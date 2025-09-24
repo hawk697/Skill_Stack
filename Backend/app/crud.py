@@ -20,7 +20,8 @@ def create_skill(db: Session, user_id: int, skill: schemas.SkillCreate):
         user_id=user_id,
         name=skill.name,
         category=skill.category,
-        difficulty=skill.difficulty
+        difficulty=skill.difficulty,
+        total_hours=skill.total_hours or 0
     )
     db.add(db_skill)
     db.commit()
@@ -60,14 +61,20 @@ def add_progress(db: Session, skill_id: int, progress: schemas.ProgressCreate):
     db_prog = models.Progress(
         skill_id=skill_id,
         status=progress.status,
-        hours_spent=progress.hours_spent,
+        hours=progress.hours,
         notes=progress.notes,
         date=datetime.utcnow()
     )
     db.add(db_prog)
+    
     db.commit()
     db.refresh(db_prog)
     return db_prog
 
 def get_progress(db: Session, skill_id: int):
     return db.query(models.Progress).filter(models.Progress.skill_id == skill_id).all()
+
+def get_total_hours(db: Session, skill_id: int):
+    entries = db.query(models.Progress).filter(models.Progress.skill_id == skill_id).all()
+    return sum([p.hours for p in entries])
+

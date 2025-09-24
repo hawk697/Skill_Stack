@@ -44,4 +44,18 @@ def add_progress(skill_id: int, progress: schemas.ProgressCreate, db: Session = 
 
 @router.get("/skills/{skill_id}/progress", response_model=List[schemas.ProgressResponse])
 def get_progress(skill_id: int, db: Session = Depends(get_db)):
-    return crud.get_progress(db, skill_id)
+    progress_entries = crud.get_progress(db, skill_id)
+    return progress_entries
+
+@router.get("/skills/{skill_id}/summary")
+def skill_summary(skill_id: int, db: Session = Depends(get_db)):
+    total_hours_spent = crud.get_total_hours(db, skill_id)
+    skill = crud.get_skill(db, skill_id)
+    if not skill:
+        raise HTTPException(status_code=404, detail="Skill not found")
+    return {
+        "skill": skill.name,
+        "required_hours": skill.total_hours,
+        "spent_hours": total_hours_spent,
+        "progress_percent": round((total_hours_spent / skill.total_hours * 100), 2) if skill.total_hours else 0
+    }

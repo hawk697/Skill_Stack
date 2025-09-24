@@ -22,6 +22,7 @@ class Skill(Base):
     category = Column(String, nullable=True)
     difficulty = Column(Integer, default=1)
     created_at = Column(DateTime, default=datetime.utcnow)
+    total_hours = Column(Integer, default=0)
 
     user = relationship("User", back_populates="skills")
     resources = relationship("Resource", back_populates="skill")
@@ -45,7 +46,7 @@ class Progress(Base):
     id = Column(Integer, primary_key=True, index=True)
     skill_id = Column(Integer, ForeignKey("skills.id"))
     status = Column(String, nullable=False)   # started / in-progress / completed
-    hours_spent = Column(Integer, default=0)
+    hours = Column(Integer, default=0)
     notes = Column(Text, nullable=True)
     date = Column(DateTime, default=datetime.utcnow)
 

@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,60 @@
   to {
     transform: rotate(360deg);
   }
+
+}
+ */
+
+ .App {
+  text-align: center;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #fafafa;
+  min-height: 100vh;
+}
+
+/* Green button styles */
+.btn-green {
+  background-color: lightgreen;
+  border: none;
+  padding: 6px 12px;
+  margin: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-green:hover {
+  background-color: #32cd32; /* lime green */
+  color: white;
+}
+
+/* Progress bar container */
+.progress-container {
+  width: 100%;
+  background: #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+
+/* Dynamic bar that will get inline background-color (HSL red→green) */
+.progress-bar {
+  height: 20px;
+  line-height: 20px;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  transition: width 0.3s ease;
+}
+
+/* Optional card styling */
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 15px 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
