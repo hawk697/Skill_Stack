@@ -1,94 +1,426 @@
-/* .App {
+/* General Body and Font Styles */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f0f2f5; /* Light grey background */
+  color: #333;
+}
+
+.App {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Dashboard Header */
+.dashboard-header {
+  background-color: #2c3e50; /* Darker blue-grey */
+  color: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
   text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 2.5em;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Main Grid Layout */
+.main-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive columns */
+  gap: 20px; /* Space between cards */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Card Styling */
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.card h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #2c3e50;
+  font-size: 1.5em;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-
-}
- */
-
- .App {
-  text-align: center;
-  font-family: Arial, sans-serif;
-  padding: 20px;
-  background-color: #fafafa;
-  min-height: 100vh;
+/* Form Grouping and Inputs */
+.form-group {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: flex-end; /* Align buttons/inputs at the bottom */
 }
 
-/* Green button styles */
-.btn-green {
-  background-color: lightgreen;
+.form-group.stacked {
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.form-group.stacked .input-group {
+    margin-bottom: 10px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Allow inputs to take available space */
+}
+
+.input-with-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-grow: 1;
+}
+
+.input-with-label label {
+    font-weight: 600;
+    color: #555;
+    white-space: nowrap; /* Prevent label from wrapping */
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="number"],
+.form-group input[type="url"],
+.form-group select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  color: #333;
+  background-color: #fdfdfd;
+  flex-grow: 1; /* Allow inputs to expand */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #3498db;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+/* Buttons */
+.btn {
+  padding: 10px 18px;
   border: none;
-  padding: 6px 12px;
-  margin: 4px;
-  border-radius: 6px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  transition: all 0.2s ease-in-out;
+  font-size: 1em;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  white-space: nowrap; /* Prevent button text from wrapping */
 }
 
-.btn-green:hover {
-  background-color: #32cd32; /* lime green */
+.btn-primary {
+  background-color: #3498db; /* Blue */
   color: white;
 }
 
-/* Progress bar container */
-.progress-container {
+.btn-primary:hover {
+  background-color: #2980b9;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background-color: #95a5a6; /* Grey */
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #7f8c8d;
+  transform: translateY(-1px);
+}
+
+.btn-small {
+  padding: 6px 10px;
+  font-size: 0.85em;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    color: #3498db;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0 5px;
+    transition: color 0.2s ease;
+}
+
+.btn-icon:hover {
+    color: #2980b9;
+}
+
+
+/* User List */
+.user-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-item {
+  background-color: #ecf0f1; /* Light background for items */
+  padding: 12px 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.user-item:hover {
+  background-color: #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.user-item.selected {
+  border-color: #3498db;
+  background-color: #e8f4fb;
+  box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+}
+
+.user-item span {
+  flex-grow: 1;
+}
+
+.user-email {
+  color: #777;
+  font-size: 0.9em;
+  flex-grow: 2; /* Give email more space */
+  text-align: right;
+}
+
+.user-item .btn-secondary {
+    position: static; /* Adjust from absolute if it was set */
+    margin-left: auto; /* Push button to the right */
+}
+
+/* Skill List Table */
+.skill-list-table {
+  overflow-x: auto; /* Allow horizontal scrolling for table */
+}
+
+.skill-list-table table {
   width: 100%;
-  background: #eee;
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 8px 0;
+  border-collapse: collapse;
+  margin-top: 15px;
 }
 
-/* Dynamic bar that will get inline background-color (HSL red→green) */
-.progress-bar {
-  height: 20px;
-  line-height: 20px;
-  color: white;
-  text-align: center;
-  font-size: 12px;
-  transition: width 0.3s ease;
-}
-
-/* Optional card styling */
-.card {
-  background: white;
-  border-radius: 10px;
-  padding: 15px;
-  margin: 15px 0;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+.skill-list-table th,
+.skill-list-table td {
+  padding: 12px 15px;
   text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+.skill-list-table th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  font-size: 0.9em;
+}
+
+.skill-list-table tbody tr:hover {
+  background-color: #f2f2f2;
+}
+
+.skill-list-table tbody tr.selected {
+    background-color: #e8f4fb;
+    border-left: 3px solid #3498db;
+}
+
+.skill-list-table td:last-child {
+  text-align: right;
+}
+
+
+/* Resource List */
+.resource-list {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.resource-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #fdfdfd;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+.resource-item .icon {
+  font-size: 1.2em;
+  color: #3498db;
+  width: 25px; /* Fixed width for icon */
+  text-align: center;
+}
+
+.resource-item span {
+  flex-grow: 1;
+}
+
+
+/* Progress Summary and Bar */
+.progress-summary {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: #e0e0e0;
+  border-radius: 15px;
+  height: 25px;
+  margin: 15px 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #27ae60; /* Green */
+  border-radius: 15px;
+  transition: width 0.5s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align text to the right inside the bar */
+  padding-right: 10px;
+}
+
+.progress-text {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 25px; /* Vertically center text */
+  color: #333; /* Darker text for contrast */
+  font-weight: 600;
+}
+
+.hours-summary {
+  font-size: 1.1em;
+  color: #555;
+  margin: 0;
+}
+
+.hours-summary strong {
+  color: #2c3e50;
+  font-size: 1.2em;
+}
+
+/* Progress History */
+.progress-history {
+  margin-top: 25px;
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+}
+
+.progress-history h4 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.progress-history ul {
+  list-style: none;
+  padding: 0;
+}
+
+.progress-item {
+  background-color: #fdfdfd;
+  border: 1px solid #eee;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95em;
+}
+
+.progress-status-badge {
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    min-width: 90px; /* Ensure badges have similar width */
+    text-align: center;
+}
+
+.progress-status-badge.started {
+    background-color: #f39c12; /* Orange */
+}
+.progress-status-badge.in-progress {
+    background-color: #3498db; /* Blue */
+}
+.progress-status-badge.completed {
+    background-color: #27ae60; /* Green */
+}
+
+.progress-note {
+    flex-grow: 1;
+    color: #666;
+    font-style: italic;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-grid-container {
+    grid-template-columns: 1fr; /* Stack cards vertically on smaller screens */
+  }
+
+  .form-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group .btn {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .user-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .user-item .btn-secondary {
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .user-email {
+    text-align: left;
+    margin-top: 5px;
+  }
 }
